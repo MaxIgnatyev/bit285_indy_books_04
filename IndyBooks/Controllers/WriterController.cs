@@ -25,27 +25,47 @@ namespace IndyBooks.Controllers
         {
             //return new string[] { "value1", "value2" };
             var WritersList = _ibdc.Writers;
-            return Json(WritersList);
+            return Ok(WritersList);
             
         }
 
         // GET: api/Writer/5
         [HttpGet("{id}", Name = "Get")]
-        public string Get(long id)
+        public IActionResult Get(long id)
         {
-            return "value";
+            var writer = _ibdc.Writers.SingleOrDefault(w => w.Id == id);
+            if (writer == null)
+            {
+                return NotFound();
+            }
+            return Ok(writer);
         }
 
         // POST: api/Writer
         [HttpPost]
-        public void Post([FromBody] string value)
+        public void Post([FromBody] Writer writer)
         {
+            _ibdc.Add(writer);
+            _ibdc.SaveChanges();
         }
 
         // PUT: api/Writer/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public IActionResult Put(long id, [FromBody] Writer writer)
         {
+            
+            var thisWriter = _ibdc.Writers.SingleOrDefault(w => w.Id == id);
+            if (thisWriter == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                thisWriter.Name = writer.Name;
+                _ibdc.Update(thisWriter);
+                _ibdc.SaveChanges();
+                return Ok();
+            }
         }
 
         // DELETE: api/ApiWithActions/5
