@@ -14,6 +14,7 @@
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.1" PrivateAssets="All" />
     <PackageReference Include="Bogus" Version="26.0.1" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.1" />
   </ItemGroup>
 
   <ItemGroup>
@@ -22,7 +23,6 @@
     <Folder Include="Views\Shared\" />
     <Folder Include="Views\Admin\" />
     <Folder Include="wwwroot\" />
-    <Folder Include="Controllers\" />
     <Folder Include="ViewModels\" />
   </ItemGroup>
   <ItemGroup>
